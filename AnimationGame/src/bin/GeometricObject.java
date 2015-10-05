@@ -43,7 +43,39 @@ public class GeometricObject {
 	
 	public boolean contains(Vertex v){
 		boolean inwidth = v.x >= position.x && v.x <= position.x + width;
-		boolean inheight;
+		boolean inheight = v.y >= position.x && v.y <= position.y + height;
+		return inwidth && inheight;
+	}
+	
+	public boolean isLargerThan(GeometricObject obj){
+		return this.area() > obj.area();
+	}
+	
+	public boolean isSmallerThan(GeometricObject obj){
+		return this.area() < obj.area();
+	}
+	
+	public void moveTo(Vertex v){
+		position = v;
+	}
+	
+	public void moveTo(double x, double y){
+		position = new Vertex(x, y);
+	}
+	
+	public void move(Vertex v){
+		position.addMod(v);
+	}
+	
+	public boolean equals(Object obj){
+		if(obj instanceof GeometricObject){
+			GeometricObject geo = (GeometricObject) obj;
+			if((height == geo.height) && (width == geo.width)){
+				if(position.equals(geo.position)){
+					return true;
+				} else {return false;}
+			} else {return false;}
+		} else {return false;}
 	}
 	
 	
